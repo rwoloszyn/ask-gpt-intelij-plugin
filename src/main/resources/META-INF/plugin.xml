@@ -1,0 +1,81 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.debugduckdesign.com.gitlab-mr</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>AskAI</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@debugduckdesign.com" url="https://www.debugduckdesign.com">DebugDuck Design</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable
+                parentId="tools" instance="com.debugduckdesign.com.gitlabmr.settings.AppSettingsConfigurable"
+                                 id="org.intellij.sdk.settings.AppSettingsConfigurable"
+                                 displayName="AskAI: Settings"/>
+        <applicationService serviceImplementation="com.debugduckdesign.com.gitlabmr.settings.AppSettingsState"/>
+    </extensions>
+
+    <actions>
+        <action
+                id="GPT.AskQuestion.ToolsMenu"
+                class="com.debugduckdesign.com.gitlabmr.action.AskQuestionAction"
+                text="Ask Question on Stack Overflow"
+                description="Ask a Question on Stack Overflow">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action
+                id="GPT.Search.Editor"
+                class="com.debugduckdesign.com.gitlabmr.action.SearchAction"
+                text="Search on Stack Overflow"
+                description="Search on Stack Overflow">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="GPT.Search.Console"
+                class="com.debugduckdesign.com.gitlabmr.action.SearchAction"
+                text="Search on Stack Overflow"
+                description="Search on Stack Overflow">
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="GPT.AskGPTAction..Search.Console"
+                class="com.debugduckdesign.com.gitlabmr.action.AskGPTAction"
+                text="Ask Question on OpenAI GPT3 model"
+                description="Ask Question on OpenAI GPT3 model">
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="GPT.AskGPTAction.ToolsMenu"
+                class="com.debugduckdesign.com.gitlabmr.action.AskGPTAction"
+                text="Ask Question on OpenAI GPT3 model"
+                description="Ask Question on OpenAI GPT3 model">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action
+                id="GPT.RefactorWithGPTAction.ToolsMenu"
+                class="com.debugduckdesign.com.gitlabmr.action.RefactorWithGPTAction"
+                text="Refactor code with GPT3 OpenAI model."
+                description="Refactor code with GPT3 OpenAI model.">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+
+
+</idea-plugin>
